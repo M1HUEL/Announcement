@@ -12,6 +12,7 @@ public final class AnnouncementTask implements Runnable {
   private static final MiniMessage MINI_MESSAGE = MiniMessage.miniMessage();
 
   private final AnnouncementPlugin plugin;
+  private int index;
 
   public AnnouncementTask(AnnouncementPlugin plugin) {
     this.plugin = plugin;
@@ -26,11 +27,20 @@ public final class AnnouncementTask implements Runnable {
     if (messages.isEmpty()) {
       return;
     }
-    String message = messages.get(ThreadLocalRandom.current().nextInt(messages.size()));
+    String message = pickMessage(config.getMode(), messages);
     String text = config.getPrefix() + message;
     text = text.replace("{players}", String.valueOf(plugin.getServer().getOnlinePlayers().size()))
       .replace("{max}", String.valueOf(plugin.getServer().getMaxPlayers()));
     Component component = MINI_MESSAGE.deserialize(text);
     plugin.getServer().broadcast(component);
+  }
+
+  private String pickMessage(String mode, List<String> messages) {
+    if ("sequential".equalsIgnoreCase(mode)) {
+      String message = messages.get(index % messages.size());
+      index++;
+      return message;
+    }
+    return messages.get(ThreadLocalRandom.current().nextInt(messages.size()));
   }
 }

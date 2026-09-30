@@ -1,3 +1,6 @@
+# Announcement order: 'sequential' (in order) or 'random'.
+mode: sequential
+
 # Interval between announcements, in seconds.
 interval-seconds: 60
 
