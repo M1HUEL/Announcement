@@ -1,0 +1,11 @@
+# Interval between announcements, in seconds.
+interval-seconds: 60
+
+# Prefix shown before each announcement, in MiniMessage format.
+prefix: "<gold>[<red>Announcement<gold>]</gold> <gray>"
+
+# Messages to announce. One is picked at random each time.
+messages:
+  - "<aqua>Welcome to the server! <white>Enjoy your stay."
+  - "<green>Remember to vote for us daily!"
+  - "<gold>Join our Discord!"

@@ -4,3 +4,11 @@ description: '${description}'
 main: com.itson.announcement.AnnouncementPlugin
 api-version: '${apiVersion}'
 author: M1HUEL
+commands:
+  announcement:
+    description: Reload the Announcement configuration.
+    permission: announcement.reload
+permissions:
+  announcement.reload:
+    description: Allows reloading the Announcement configuration.
+    default: op
