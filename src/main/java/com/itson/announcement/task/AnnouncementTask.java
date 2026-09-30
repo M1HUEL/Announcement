@@ -27,7 +27,10 @@ public final class AnnouncementTask implements Runnable {
       return;
     }
     String message = messages.get(ThreadLocalRandom.current().nextInt(messages.size()));
-    Component component = MINI_MESSAGE.deserialize(config.getPrefix() + message);
+    String text = config.getPrefix() + message;
+    text = text.replace("{players}", String.valueOf(plugin.getServer().getOnlinePlayers().size()))
+      .replace("{max}", String.valueOf(plugin.getServer().getMaxPlayers()));
+    Component component = MINI_MESSAGE.deserialize(text);
     plugin.getServer().broadcast(component);
   }
 }
