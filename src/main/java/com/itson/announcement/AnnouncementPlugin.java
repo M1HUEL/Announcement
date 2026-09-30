@@ -15,7 +15,9 @@ public final class AnnouncementPlugin extends JavaPlugin {
   public void onEnable() {
     saveDefaultConfig();
     announcementConfig = new AnnouncementConfig(this);
-    getCommand("announcement").setExecutor(new AnnouncementCommand(this));
+    AnnouncementCommand announcementCommand = new AnnouncementCommand(this);
+    getCommand("announcement").setExecutor(announcementCommand);
+    getCommand("announcement").setTabCompleter(announcementCommand);
     startAnnouncementTask();
     getLogger().info("Announcement v" + getPluginMeta().getVersion() + " enabled.");
   }
